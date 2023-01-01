@@ -11,18 +11,14 @@ namespace Catalog.API.Repository.Concrete
 {
     public class CatalogContext : ICatalogContext
     {
-
-        
         public CatalogContext(IConfiguration configuration)
         {
             var dbName = configuration.GetValue<string>("DatabaseSettings:DatabaseName");
             var conString = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-            var collectionName = configuration.GetValue<string>("DatabaseSettings:CollectionName");
             var client = new MongoClient(conString); 
-            var database = client.GetDatabase(dbName);
-            Products = database.GetCollection<Product>(collectionName);
+            Database= client.GetDatabase(dbName);
         }
 
-        public IMongoCollection<Product> Products { get; }
+        public IMongoDatabase Database { get; }
     }
 }

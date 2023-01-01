@@ -9,6 +9,6 @@ namespace Catalog.API.Repository.Abstract
 {
     public interface ICatalogContext
     {
-        IMongoCollection<Product> Products { get; }
+        IMongoDatabase Database { get; }
     }
 }
